@@ -1,32 +1,32 @@
 <?php
 
-// установим HTTP-заголовки
+// HTTP-Header setzen
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-// подключение файлов для соединения с БД и файл с объектом Category
+// Verbinden von Dateien, um eine Verbindung zur Datenbank und einer Datei mit einem Kategorieobjekt herzustellen
 include_once "../config/database.php";
 include_once "../objects/category.php";
 
-// создание подключения к базе данных
+// Erstellen einer Datenbankverbindung
 $database = new Database();
 $db = $database->getConnection();
 
-// инициализация объекта
+// Objektinitialisierung
 $category = new Category($db);
 
-// получаем категории
+// Wir bekommen Kategorien
 $stmt = $category->readAll();
 $num = $stmt->rowCount();
 
-// проверяем, найдено ли больше 0 записей
+// Überprüfen Sie, ob mehr als 0 Datensätze gefunden werden
 if ($num > 0) {
 
-    // массив для записей
+    // Array für Datensätze
     $categories_arr = array();
     $categories_arr["records"] = array();
 
-    // получим содержимое нашей таблицы
+    // Holen Sie sich den Inhalt unserer Tabelle
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         // извлекаем строку
