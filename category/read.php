@@ -29,7 +29,7 @@ if ($num > 0) {
     // Holen Sie sich den Inhalt unserer Tabelle
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-        // извлекаем строку
+        // Extrahieren Sie die Zeichenfolge
         extract($row);
         $category_item = array(
             "id" => $id,
@@ -38,16 +38,16 @@ if ($num > 0) {
         );
         array_push($categories_arr["records"], $category_item);
     }
-    // код ответа - 200 OK
+    // Antwortcode - 200 OK
     http_response_code(200);
 
-    // покажем данные категорий в формате json
+    // Kategoriedaten im JSON-Format anzeigen
     echo json_encode($categories_arr);
 } else {
 
-    // код ответа - 404 Ничего не найдено
+    // Antwortcode – 404 Nichts gefunden
     http_response_code(404);
 
-    // сообщим пользователю, что категории не найдены
+    // Informieren Sie den Benutzer darüber, dass keine Kategorien gefunden wurden
     echo json_encode(array("message" => "Категории не найдены"), JSON_UNESCAPED_UNICODE);
 }
