@@ -1,17 +1,17 @@
 <?php
 
-// показывать сообщения об ошибках
+// Fehlermeldungen anzeigen
 ini_set("display_errors", 1);
 error_reporting(E_ALL);
 
-// URL домашней страницы
+// Homepage-URL
 $home_url = "http://localhost/api/";
 
-// страница указана в параметре URL, страница по умолчанию одна
+// Die Seite wird im URL-Parameter angegeben, die Standardseite ist eine
 $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 
-// установка количества записей на странице
+// Festlegen der Anzahl der Datensätze pro Seite
 $records_per_page = 5;
 
-// расчёт для запроса предела записей
+// Berechnung für Datensatzlimitabfrage
 $from_record_num = ($records_per_page * $page) - $records_per_page;
