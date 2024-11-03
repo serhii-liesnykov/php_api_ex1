@@ -2,11 +2,11 @@
 
 class Category
 {
-    // соединение с БД и таблицей "categories"
+    // Verbindung zur Datenbank und zur Tabelle „Kategorien“.
     private $conn;
     private $table_name = "categories";
 
-    // свойства объекта
+    // Objekteigenschaften
     public $id;
     public $name;
     public $description;
@@ -17,7 +17,7 @@ class Category
         $this->conn = $db;
     }
 
- // метод для получения всех категорий товаров
+ // Methode, um alle Produktkategorien abzurufen
 public function readAll()
 {
     $query = "SELECT
