@@ -2,14 +2,14 @@
 
 class Database
 {
-    // укажите свои учетные данные базы данных
+    // Geben Sie Ihre Datenbankanmeldeinformationen an
     private $host = "localhost";
     private $db_name = "api_db";
     private $username = "root";
     private $password = "";
     public $conn;
 
-    // получаем соединение с БД
+    // Wir stellen eine Verbindung zur Datenbank her
     public function getConnection()
     {
         $this->conn = null;
