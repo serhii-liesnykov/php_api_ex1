@@ -1,16 +1,16 @@
 <?php
 
-// необходимые HTTP-заголовки
+// erforderliche HTTP-Header
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-// получаем соединение с базой данных
+// Wir bekommen eine Verbindung zur Datenbank
 include_once "../config/database.php";
 
-// создание объекта товара
+// Erstellen eines Produktobjekts
 include_once "../objects/product.php";
 $database = new Database();
 $db = $database->getConnection();
