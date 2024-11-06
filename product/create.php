@@ -16,45 +16,45 @@ $database = new Database();
 $db = $database->getConnection();
 $product = new Product($db);
 
-// получаем отправленные данные
+// Wir erhalten die gesendeten Daten
 $data = json_decode(file_get_contents("php://input"));
 
-// убеждаемся, что данные не пусты
+// Stellen Sie sicher, dass die Daten nicht leer sind
 if (
     !empty($data->name) &&
     !empty($data->price) &&
     !empty($data->description) &&
     !empty($data->category_id)
 ) {
-    // устанавливаем значения свойств товара
+    // Legen Sie die Werte der Produkteigenschaften fest
     $product->name = $data->name;
     $product->price = $data->price;
     $product->description = $data->description;
     $product->category_id = $data->category_id;
     $product->created = date("Y-m-d H:i:s");
 
-    // создание товара
+    // Produkterstellung
     if ($product->create()) {
-        // установим код ответа - 201 создано
+        // Legen Sie den Antwortcode fest - 201 erstellt
         http_response_code(201);
 
-        // сообщим пользователю
+        // wir werden den Nutzer informieren
         echo json_encode(array("message" => "Товар был создан."), JSON_UNESCAPED_UNICODE);
     }
-    // если не удается создать товар, сообщим пользователю
+    // Wenn das Produkt nicht erstellt werden kann, benachrichtigen wir den Benutzer
     else {
-        // установим код ответа - 503 сервис недоступен
+        // Legen Sie den Antwortcode fest: 503-Dienst nicht verfügbar
         http_response_code(503);
 
-        // сообщим пользователю
+        // wir werden den Nutzer informieren
         echo json_encode(array("message" => "Невозможно создать товар."), JSON_UNESCAPED_UNICODE);
     }
 }
-// сообщим пользователю что данные неполные
+// Informieren Sie den Benutzer darüber, dass die Daten unvollständig sind
 else {
-    // установим код ответа - 400 неверный запрос
+    // Legen Sie den Antwortcode fest – 400 ungültige Anfrage
     http_response_code(400);
 
-    // сообщим пользователю
+    // wir werden den Nutzer informieren
     echo json_encode(array("message" => "Невозможно создать товар. Данные неполные."), JSON_UNESCAPED_UNICODE);
 }
