@@ -1,34 +1,34 @@
 <?php
 
-// необходимые HTTP-заголовки
+// erforderliche HTTP-Header
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-// подключение базы данных и файл, содержащий объекты
+// Datenbankverbindung und Datei mit Objekten
 include_once "../config/database.php";
 include_once "../objects/product.php";
 
-// получаем соединение с базой данных
+// Wir bekommen eine Verbindung zur Datenbank
 $database = new Database();
 $db = $database->getConnection();
 
-// инициализируем объект
+// Initialisieren Sie das Objekt
 $product = new Product($db);
  
-// запрашиваем товары
+// Ware anfordern
 $stmt = $product->read();
 $num = $stmt->rowCount();
 
-// проверка, найдено ли больше 0 записей
+// Überprüfen, ob mehr als 0 Datensätze gefunden wurden
 if ($num > 0) {
-    // массив товаров
+    // Warensortiment
     $products_arr = array();
     $products_arr["records"] = array();
 
-    // получаем содержимое нашей таблицы
-    // fetch() быстрее, чем fetchAll()
+    // Holen Sie sich den Inhalt unserer Tabelle
+    // fetch() ist schneller als fetchAll()
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        // извлекаем строку
+        // Extrahieren Sie die Zeichenfolge
         extract($row);
         $product_item = array(
             "id" => $id,
