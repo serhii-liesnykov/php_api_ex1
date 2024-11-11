@@ -2,11 +2,11 @@
 
 class Product
 {
-    // подключение к базе данных и таблице "products"
+    // Verbindung zur Datenbank und zur Tabelle „Produkte“ herstellen
     private $conn;
     private $table_name = "products";
 
-    // свойства объекта
+    // Objekteigenschaften
     public $id;
     public $name;
     public $description;
@@ -15,16 +15,16 @@ class Product
     public $category_name;
     public $created;
 
-    // конструктор для соединения с базой данных
+    // Konstruktor für die Verbindung zu einer Datenbank
     public function __construct($db)
     {
         $this->conn = $db;
     }
 
-    // метод для получения товаров
+    // Methode zur Warenannahme
 function read()
 {
-    // выбираем все записи
+    // Wählen Sie alle Datensätze aus
     $query = "SELECT
         c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
     FROM
@@ -35,26 +35,26 @@ function read()
     ORDER BY
         p.created DESC";
 
-    // подготовка запроса
+    // Vorbereitung einer Anfrage
     $stmt = $this->conn->prepare($query);
 
-    // выполняем запрос
+    // die Anfrage ausführen
     $stmt->execute();
     return $stmt;
 }
-// метод для создания товаров
+// Methode zur Herstellung von Produkten
 function create()
 {
-    // запрос для вставки (создания) записей
+    // Abfrage zum Einfügen (Erstellen) von Datensätzen
     $query = "INSERT INTO
             " . $this->table_name . "
         SET
             name=:name, price=:price, description=:description, category_id=:category_id, created=:created";
 
-    // подготовка запроса
+    // Vorbereitung einer Anfrage
     $stmt = $this->conn->prepare($query);
 
-    // очистка
+    // Reinigung
     $this->name = htmlspecialchars(strip_tags($this->name));
     $this->price = htmlspecialchars(strip_tags($this->price));
     $this->description = htmlspecialchars(strip_tags($this->description));
