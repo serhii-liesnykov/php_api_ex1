@@ -4,26 +4,26 @@ class Utilities
 {
     public function getPaging($page, $total_rows, $records_per_page, $page_url)
     {
-        // массив пагинации
+        // Paginierungsarray
         $paging_arr = array();
 
-        // кнопка для первой страницы
+        // Schaltfläche für die erste Seite
         $paging_arr["first"] = $page > 1 ? "{$page_url}page=1" : "";
 
-        // подсчёт всех товаров в базе данных для подсчета общего количества страниц
+        // Zählen aller Produkte in der Datenbank, um die Gesamtzahl der Seiten zu zählen
         $total_pages = ceil($total_rows / $records_per_page);
 
-        // диапазон ссылок для показа
+        // Auswahl an anzuzeigenden Links
         $range = 2;
 
-        // отображать диапазон ссылок вокруг текущей страницы
+        // Zeigt eine Reihe von Links rund um die aktuelle Seite an
         $initial_num = $page - $range;
         $condition_limit_num = ($page + $range) + 1;
         $paging_arr["pages"] = array();
         $page_count = 0;
 
         for ($x = $initial_num; $x < $condition_limit_num; $x++) {
-            // убедимся, что $x > 0 И $x <= $total_pages
+            // Stellen wir sicher, dass $x > 0 UND $x <= $total_pages
             if (($x > 0) && ($x <= $total_pages)) {
                 $paging_arr["pages"][$page_count]["page"] = $x;
                 $paging_arr["pages"][$page_count]["url"] = "{$page_url}page={$x}";
@@ -32,10 +32,10 @@ class Utilities
             }
         }
 
-        // кнопка для последней страницы
+        // Schaltfläche für die letzte Seite
         $paging_arr["last"] = $page < $total_pages ? "{$page_url}page={$total_pages}" : "";
 
-        // формат json
+        // JSON-Format
         return json_encode($paging_arr);
     }
 }
