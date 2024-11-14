@@ -35,14 +35,14 @@ if ($product->update()) {
     // Setzen Sie den Antwortcode auf 200 ok
     http_response_code(200);
 
-    // сообщим пользователю
+    // wir werden den Nutzer informieren
     echo json_encode(array("message" => "Товар был обновлён"), JSON_UNESCAPED_UNICODE);
 }
-// если не удается обновить товар, сообщим пользователю
+// Wenn das Produkt nicht aktualisiert werden kann, benachrichtigen wir den Benutzer
 else {
-    // код ответа - 503 Сервис не доступен
+    // Antwortcode – 503 Dienst nicht verfügbar
     http_response_code(503);
 
-    // сообщение пользователю
+    // Nachricht an den Benutzer
     echo json_encode(array("message" => "Невозможно обновить товар"), JSON_UNESCAPED_UNICODE);
 }
