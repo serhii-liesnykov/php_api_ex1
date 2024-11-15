@@ -1,19 +1,19 @@
 <?php
 
-// HTTP-заголовки
+// HTTP-Header
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-// подключение необходимых файлов
+// Anschließen der erforderlichen Dateien
 include_once "../config/core.php";
 include_once "../config/database.php";
 include_once "../objects/product.php";
 
-// создание подключения к БД
+// Herstellen einer Verbindung zur Datenbank
 $database = new Database();
 $db = $database->getConnection();
 
-// инициализируем объект
+// Initialisieren Sie das Objekt
 $product = new Product($db);
 
 // получаем ключевые слова
