@@ -61,23 +61,23 @@ function create()
     $this->category_id = htmlspecialchars(strip_tags($this->category_id));
     $this->created = htmlspecialchars(strip_tags($this->created));
 
-    // привязка значений
+    // Wertbindung
     $stmt->bindParam(":name", $this->name);
     $stmt->bindParam(":price", $this->price);
     $stmt->bindParam(":description", $this->description);
     $stmt->bindParam(":category_id", $this->category_id);
     $stmt->bindParam(":created", $this->created);
 
-    // выполняем запрос
+    // die Anfrage ausführen
     if ($stmt->execute()) {
         return true;
     }
     return false;
 }
-// метод для получения конкретного товара по ID
+// Methode zum Erhalten eines bestimmten Produkts anhand der ID
 function readOne()
 {
-    // запрос для чтения одной записи (товара)
+    // Anfrage zum Lesen eines Datensatzes (Produkts)
     $query = "SELECT
             c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
         FROM
