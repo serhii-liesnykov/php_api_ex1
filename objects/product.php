@@ -90,19 +90,19 @@ function readOne()
         LIMIT
             0,1";
             
-    // подготовка запроса
+    // Vorbereitung einer Anfrage
     $stmt = $this->conn->prepare($query);
 
-    // привязываем id товара, который будет получен
+    // Binden Sie die ID des Produkts, das empfangen wird
     $stmt->bindParam(1, $this->id);
 
-    // выполняем запрос
+    // die Anfrage ausführen
     $stmt->execute();
 
-    // получаем извлеченную строку
+    // Wir erhalten die extrahierte Zeichenfolge
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // установим значения свойств объекта
+    // Legen Sie die Werte der Objekteigenschaften fest
     $this->name = $row["name"];
     $this->price = $row["price"];
     $this->description = $row["description"];
