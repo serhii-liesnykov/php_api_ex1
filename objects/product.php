@@ -109,10 +109,10 @@ function readOne()
     $this->category_id = $row["category_id"];
     $this->category_name = $row["category_name"];
 }
-// метод для обновления товара
+// Methode zum Aktualisieren eines Produkts
 function update()
 {
-    // запрос для обновления записи (товара)
+    // Anfrage zur Aktualisierung eines Datensatzes (Produkts)
     $query = "UPDATE
             " . $this->table_name . "
         SET
@@ -123,24 +123,24 @@ function update()
         WHERE
             id = :id";
 
-    // подготовка запроса
+    // Vorbereitung einer Anfrage
     $stmt = $this->conn->prepare($query);
 
-    // очистка
+    // Reinigung
     $this->name = htmlspecialchars(strip_tags($this->name));
     $this->price = htmlspecialchars(strip_tags($this->price));
     $this->description = htmlspecialchars(strip_tags($this->description));
     $this->category_id = htmlspecialchars(strip_tags($this->category_id));
     $this->id = htmlspecialchars(strip_tags($this->id));
 
-    // привязываем значения
+    // Werte binden
     $stmt->bindParam(":name", $this->name);
     $stmt->bindParam(":price", $this->price);
     $stmt->bindParam(":description", $this->description);
     $stmt->bindParam(":category_id", $this->category_id);
     $stmt->bindParam(":id", $this->id);
 
-    // выполняем запрос
+    // die Anfrage ausführen
     if ($stmt->execute()) {
         return true;
     }
