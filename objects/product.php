@@ -146,16 +146,16 @@ function update()
     }
     return false;
 }
-// метод для удаления товара
+// Methode zum Löschen eines Produkts
 function delete()
 {
-    // запрос для удаления записи (товара)
+    // Anfrage zum Löschen eines Datensatzes (Produkts)
     $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
 
-    // подготовка запроса
+    // Vorbereitung einer Anfrage
     $stmt = $this->conn->prepare($query);
 
-    // очистка
+    // Reinigung
     $this->id = htmlspecialchars(strip_tags($this->id));
 
     // привязываем id записи для удаления
