@@ -158,16 +158,16 @@ function delete()
     // Reinigung
     $this->id = htmlspecialchars(strip_tags($this->id));
 
-    // привязываем id записи для удаления
+    // Verknüpfen der Beitrags-ID zum Löschen
     $stmt->bindParam(1, $this->id);
 
-    // выполняем запрос
+    // die Anfrage ausführen
     if ($stmt->execute()) {
         return true;
     }
     return false;
 }
-// метод для поиска товаров
+// Methode zur Produktsuche
 function search($keywords)
 {
     // поиск записей (товаров) по "названию товара", "описанию товара", "названию категории"
