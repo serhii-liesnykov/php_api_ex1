@@ -1,17 +1,17 @@
 <?php
 
-// необходимые HTTP-заголовки
+// erforderliche HTTP-Header
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Credentials: true");
 header("Content-Type: application/json");
 
-// подключение файла для соединения с базой и файл с объектом
+// Verbinden einer Datei mit der Datenbank und einer Datei mit dem Objekt
 include_once "../config/database.php";
 include_once "../objects/product.php";
 
-// получаем соединение с базой данных
+// Wir bekommen eine Verbindung zur Datenbank
 $database = new Database();
 $db = $database->getConnection();
 
