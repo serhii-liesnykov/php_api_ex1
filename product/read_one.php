@@ -15,13 +15,13 @@ include_once "../objects/product.php";
 $database = new Database();
 $db = $database->getConnection();
 
-// подготовка объекта
+// Vorbereitung der Baustelle
 $product = new Product($db);
 
-// установим свойство ID записи для чтения
+// Legen Sie die Datensatz-ID-Eigenschaft zum Lesen fest
 $product->id = isset($_GET["id"]) ? $_GET["id"] : die();
 
-// получим детали товара
+// Wir erhalten Produktdetails
 $product->readOne();
 
 if ($product->name != null) {
