@@ -26,7 +26,7 @@ $product->readOne();
 
 if ($product->name != null) {
 
-    // создание массива
+    // Erstellen eines Arrays
     $product_arr = array(
         "id" =>  $product->id,
         "name" => $product->name,
@@ -36,13 +36,13 @@ if ($product->name != null) {
         "category_name" => $product->category_name
     );
 
-    // код ответа - 200 OK
+    // Antwortcode - 200 OK
     http_response_code(200);
 
-    // вывод в формате json
+    // Ausgabe im JSON-Format
     echo json_encode($product_arr);
 } else {
-    // код ответа - 404 Не найдено
+    // Antwortcode - 404 Nicht gefunden
     http_response_code(404);
 
     // сообщим пользователю, что такой товар не существует
