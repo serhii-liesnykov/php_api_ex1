@@ -13,18 +13,18 @@ include_once "../objects/product.php";
 // utilities
 $utilities = new Utilities();
 
-// создание подключения
+// eine Verbindung herstellen
 $database = new Database();
 $db = $database->getConnection();
 
-// инициализация объекта
+// Objektinitialisierung
 $product = new Product($db);
 
-// запрос товаров
+// Anfrage nach Waren
 $stmt = $product->readPaging($from_record_num, $records_per_page);
 $num = $stmt->rowCount();
 
-// если больше 0 записей
+// wenn es mehr als 0 Datensätze gibt
 if ($num > 0) {
 
     // массив товаров
