@@ -45,6 +45,6 @@ if ($product->name != null) {
     // Antwortcode - 404 Nicht gefunden
     http_response_code(404);
 
-    // сообщим пользователю, что такой товар не существует
+    // Informieren wir den Benutzer darüber, dass ein solches Produkt nicht existiert
     echo json_encode(array("message" => "Товар не существует"), JSON_UNESCAPED_UNICODE);
 }
