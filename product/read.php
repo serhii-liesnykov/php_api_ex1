@@ -41,17 +41,17 @@ if ($num > 0) {
         array_push($products_arr["records"], $product_item);
     }
 
-    // устанавливаем код ответа - 200 OK
+    // setze den Antwortcode auf 200 OK
     http_response_code(200);
 
-    // выводим данные о товаре в формате JSON
+    // Produktdaten im JSON-Format ausgeben
     echo json_encode($products_arr);
 }
 
 else {
-    // установим код ответа - 404 Не найдено
+    // setze den Antwortcode - 404 Nicht gefunden
     http_response_code(404);
 
-    // сообщаем пользователю, что товары не найдены
+    // Wir informieren den Benutzer, dass keine Produkte gefunden wurden
     echo json_encode(array("message" => "Товары не найдены."), JSON_UNESCAPED_UNICODE);
 }
