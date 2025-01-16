@@ -16,14 +16,14 @@ $db = $database->getConnection();
 // Initialisieren Sie das Objekt
 $product = new Product($db);
 
-// получаем ключевые слова
+// Holen Sie sich Schlüsselwörter
 $keywords = isset($_GET["s"]) ? $_GET["s"] : "";
 
-// запрос товаров
+// Anfrage nach Waren
 $stmt = $product->search($keywords);
 $num = $stmt->rowCount();
 
-// проверяем, найдено ли больше 0 записей
+// Überprüfen Sie, ob mehr als 0 Datensätze gefunden werden
 if ($num > 0) {
     // массив товаров
     $products_arr = array();
