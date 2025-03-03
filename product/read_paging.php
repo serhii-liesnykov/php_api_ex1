@@ -27,15 +27,15 @@ $num = $stmt->rowCount();
 // wenn es mehr als 0 Datensätze gibt
 if ($num > 0) {
 
-    // массив товаров
+    // Auswahl an Waren
     $products_arr = array();
     $products_arr["records"] = array();
     $products_arr["paging"] = array();
 
-    // получаем содержимое нашей таблицы
+    // Wir erhalten den Inhalt unserer Tabelle
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-        // извлечение строки
+        // Zeichenfolge extrahieren
         extract($row);
         $product_item = array(
             "id" => $id,
@@ -48,13 +48,13 @@ if ($num > 0) {
         array_push($products_arr["records"], $product_item);
     }
 
-    // подключим пагинацию
+    // Lassen Sie uns die Paginierung verbinden
     $total_rows = $product->count();
     $page_url = "{$home_url}product/read_paging.php?";
     $paging = $utilities->getPaging($page, $total_rows, $records_per_page, $page_url);
     $products_arr["paging"] = $paging;
 
-    // установим код ответа - 200 OK
+    // Setzen wir den Antwortcode auf 200 OK
     http_response_code(200);
 
     // вывод в json-формате
